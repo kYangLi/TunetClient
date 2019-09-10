@@ -27,7 +27,7 @@ class TunetWebClient:
     elif self.respond.status_code == 404:
       print('[error] Server Not Found...')
     else:
-      print("[error] Unknown Stat!!!")
+      print("[error] Unknown State!!!")
 
 class TunetConfigData:
   def __init__(self, config_file_path, default_url):
