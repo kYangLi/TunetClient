@@ -7,7 +7,7 @@ Tsinghua Network Certification Client (Tunet) Based on Web Post Request.
 ## Usage
 
 ```bash
-python TunetWebClient.py -s O/X -f [file.conf] -v 4/6
+python TunetWebClient.py -s O/X -f [file.conf] -i 4/6
 ```
 
 Using `python TunetWebClient.py -h` for more details.
