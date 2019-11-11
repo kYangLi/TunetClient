@@ -27,3 +27,4 @@ ECHO '==================== Request ipv6 Link... ===================='
 %TUNET_PYTHON_PATH% %TUNET_EXEC% -s O -f %TUNET_IPV6_CONF% -i 6
 ECHO '=========================== DONE. ============================'
 
+pause
