@@ -15,5 +15,11 @@ Using `python TunetWebClient.py -h` for more details.
 Under linux system, simply use the command below to connect to the network:
 
 ```bash
-bash Pay4Net.sh O/rO/X
+bash RunMe.sh
+```
+
+Under windows system, use the command below to connect to the network:
+
+```cmd
+RunMe.cmd
 ```
