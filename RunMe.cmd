@@ -17,10 +17,10 @@ IF NOT EXIST %TUNET_EXEC% (
   EXIT /B 1
 )
 
-REM echo '==================== Disconnect ipv4 Link ===================='
-REM %TUNET_PYTHON_PATH% %TUNET_EXEC% -s X -f %TUNET_IPV4_CONF% -i 4
-REM echo '==================== Disconnect ipv6 Link ===================='
-REM %TUNET_PYTHON_PATH% %TUNET_EXEC% -s X -f %TUNET_IPV6_CONF% -i 6
+ECHO '==================== Disconnect ipv4 Link ===================='
+%TUNET_PYTHON_PATH% %TUNET_EXEC% -s X -f %TUNET_IPV4_CONF% -i 4
+ECHO '==================== Disconnect ipv6 Link ===================='
+%TUNET_PYTHON_PATH% %TUNET_EXEC% -s X -f %TUNET_IPV6_CONF% -i 6
 ECHO '==================== Request ipv4 Link... ===================='
 %TUNET_PYTHON_PATH% %TUNET_EXEC% -s O -f %TUNET_IPV4_CONF% -i 4
 ECHO '==================== Request ipv6 Link... ===================='

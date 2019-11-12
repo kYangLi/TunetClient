@@ -44,6 +44,10 @@ fi
 #  echo "$0 O/rO/X, for Connect, Re-connect or Dis-connect."
 #fi
 
+echo '==================== Disconnect ipv4 Link ===================='
+${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s X -f ${TUNET_IPV4_CONF} -i 4
+echo '==================== Disconnect ipv6 Link ===================='
+${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s X -f ${TUNET_IPV6_CONF} -i 6
 echo '==================== Request ipv4 Link... ===================='
 ${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s O -f ${TUNET_IPV4_CONF} -i 4
 echo '==================== Request ipv6 Link... ===================='
