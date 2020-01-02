@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 
-declare -r TUNET_MAIN_FOLDER="/home/alex/Program/Tunet"
-declare -r PYTHON_EXEC="/home/alex/Program/Anaconda3.5/bin/python"
+declare -r TUNET_MAIN_FOLDER="/home/user/your/tunet/main/folder"
+declare -r PYTHON_EXEC="/home/user/your/python3"
 declare -r TUNET_PY="${TUNET_MAIN_FOLDER}/TunetWebClient.py"
 declare -r TUNET_IPV4_CONF="${TUNET_MAIN_FOLDER}/tunet_ipv4.conf.josn"
 declare -r TUNET_IPV6_CONF="${TUNET_MAIN_FOLDER}/tunet_ipv6.conf.josn"

@@ -1,7 +1,7 @@
 @echo off
 
-SET TUNET_MAIN_FOLDER=D:\SmartTools\TunetClient-python
-SET PYTHON_EXEC=D:\Work\Anaconda3\python.exe
+SET TUNET_MAIN_FOLDER=D:\fill\with\tunet\main\folder
+SET PYTHON_EXEC=D:\fill\with\python.exe
 SET TUNET_PY=%TUNET_MAIN_FOLDER%\TunetWebClient.py
 SET TUNET_IPV4_CONF=%TUNET_MAIN_FOLDER%\tunet_ipv4.conf.josn
 SET TUNET_IPV6_CONF=%TUNET_MAIN_FOLDER%\tunet_ipv6.conf.josn
