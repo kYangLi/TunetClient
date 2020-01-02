@@ -22,7 +22,7 @@ fi
 python_link_valid=false
 while ! ${python_link_valid}; do 
   python_path=$(readlink -f ${PYTHON_SLN})
-  if [ ! -s python_path ]; then
+  if [ ! -s ${python_path} ]; then
     echo "[info] Python exec. do not found..."
     echo "[info] Please try to relink it..."
     echo "[input] Please input the python path."
