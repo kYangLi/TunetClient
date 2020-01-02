@@ -1,21 +1,22 @@
 @echo off
 
-SET PYTHON_EXEC=python      :: You can change this with a abs. path
 SET TUNET_MAIN_FOLDER=%~dp0
+SET PYTHON_SLN=%TUNET_MAIN_FOLDER%python.exe
 SET TUNET_PY=%TUNET_MAIN_FOLDER%TunetWebClient.py
 SET TUNET_IPV4_CONF=%TUNET_MAIN_FOLDER%tunet_ipv4.conf.josn
 SET TUNET_IPV6_CONF=%TUNET_MAIN_FOLDER%tunet_ipv6.conf.josn
 
-IF NOT EXIST %PYTHON_EXEC% (
-  ECHO [error] Python exec not found!!!
-  ECHO [error] Please check the PYTHON_EXEC in %TUNET_MAIN_FOLDER%RunMe.cmd
-  pause
-  EXIT /B 1
+IF NOT EXIST %PYTHON_SLN% (
+  ECHO [info] Symbol link: %PYTHON_SLN% do not found...
+  ECHO [input] Please input the python path.
+  SET /p python_exec=>\ 
+  MKLINK %PYTHON_SLN% %python_exec%
 )
+
 IF NOT EXIST %TUNET_PY% (
   ECHO [error] TunetClient.py was found!!!
   ECHO [error] Please check the TUNET_PY in %TUNET_MAIN_FOLDER%RunMe.cmd
-  pause
+  PAUSE
   EXIT /B 1
 )
 
@@ -29,5 +30,5 @@ ECHO ==================== Request ipv6 Link... ====================
 %PYTHON_EXEC% %TUNET_PY% -s O -f %TUNET_IPV6_CONF% -i 6
 ECHO =========================== DONE =============================
 
-pause
+PAUSE
 EXIT /B 1
