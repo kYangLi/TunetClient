@@ -1,7 +1,7 @@
 @echo off
 
 SET TUNET_MAIN_FOLDER=%~dp0
-SET PYTHON_SLN=%TUNET_MAIN_FOLDER%python.exe
+SET PYTHON_SLN=%TUNET_MAIN_FOLDER%python.txt
 SET TUNET_PY=%TUNET_MAIN_FOLDER%TunetWebClient.py
 SET TUNET_IPV4_CONF=%TUNET_MAIN_FOLDER%tunet_ipv4.conf.josn
 SET TUNET_IPV6_CONF=%TUNET_MAIN_FOLDER%tunet_ipv6.conf.josn
@@ -9,8 +9,13 @@ SET TUNET_IPV6_CONF=%TUNET_MAIN_FOLDER%tunet_ipv6.conf.josn
 IF NOT EXIST %PYTHON_SLN% (
   ECHO [info] Symbol link: %PYTHON_SLN% do not found...
   ECHO [input] Please input the python path.
-  SET /p python_exec=>\ 
-  MKLINK %PYTHON_SLN% %python_exec%
+  SET /P python_exec_tmp="> " 
+)
+IF NOT EXIST %PYTHON_SLN% ( 
+  ECHO %python_exec_tmp% > %PYTHON_SLN%
+)
+FOR /F "tokens=* USEBACKQ" %%F IN ( `type %PYTHON_SLN%` ) DO ( 
+  SET PYTHON_EXEC=%%F 
 )
 
 IF NOT EXIST %TUNET_PY% (
