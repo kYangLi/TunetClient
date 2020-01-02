@@ -1,20 +1,20 @@
 @echo off
 
-SET TUNET_MAIN_FOLDER=D:\fill\with\tunet\main\folder
-SET PYTHON_EXEC=D:\fill\with\python.exe
-SET TUNET_PY=%TUNET_MAIN_FOLDER%\TunetWebClient.py
-SET TUNET_IPV4_CONF=%TUNET_MAIN_FOLDER%\tunet_ipv4.conf.josn
-SET TUNET_IPV6_CONF=%TUNET_MAIN_FOLDER%\tunet_ipv6.conf.josn
+SET PYTHON_EXEC=python      :: You can change this with a abs. path
+SET TUNET_MAIN_FOLDER=%~dp0
+SET TUNET_PY=%TUNET_MAIN_FOLDER%TunetWebClient.py
+SET TUNET_IPV4_CONF=%TUNET_MAIN_FOLDER%tunet_ipv4.conf.josn
+SET TUNET_IPV6_CONF=%TUNET_MAIN_FOLDER%tunet_ipv6.conf.josn
 
 IF NOT EXIST %PYTHON_EXEC% (
   ECHO [error] Python exec not found!!!
-  ECHO [error] Please check the PYTHON_EXEC in RunMe.cmd
+  ECHO [error] Please check the PYTHON_EXEC in %TUNET_MAIN_FOLDER%RunMe.cmd
   pause
   EXIT /B 1
 )
 IF NOT EXIST %TUNET_PY% (
   ECHO [error] TunetClient.py was found!!!
-  ECHO [error] Please check the TUNET_PY in RunMe.cmd
+  ECHO [error] Please check the TUNET_PY in %TUNET_MAIN_FOLDER%RunMe.cmd
   pause
   EXIT /B 1
 )
