@@ -15,11 +15,7 @@ Using `python TunetWebClient.py -h` for more details.
 Under linux system, simply use the command below to connect to the network:
 
 ```bash
-bash RunMe.sh
+bash RunMe.sh [4/6/_]
 ```
 
-Under windows system, use the command below to connect to the network:
-
-```cmd
-RunMe.cmd
-```
+Under windows system, simple click the `RunMe.cmd` to connect to the network.
