@@ -1,14 +1,11 @@
-#!/home/alex/Program/Anaconda3.5/bin/python
-#
-
+import os
+import sys
 import requests
 import time 
-import os
 import json
 import getpass
 import hashlib
 import getopt
-import sys
 
 class TunetWebClient:
   def __init__(self, url, post_data):
@@ -16,9 +13,21 @@ class TunetWebClient:
     self.post_data = post_data
     self.respond = ''
 
+  def check_internet(self):
+      try:
+          _ = requests.get(self.url, timeout=10)
+          return True
+      except requests.ConnectionError:
+          print("[error] Blocked during check internet...")
+      return False
+
   def post_request(self):
-    respond = requests.post(url = self.url, data = self.post_data)
-    self.respond = respond
+    if self.check_internet():
+      respond = requests.post(url = self.url, data = self.post_data)
+      self.respond = respond
+    else:
+      print("[error] Cannot build connection to the api web...")
+      sys.exit(1)
 
   def print_respond(self):
     print('[responds] ', self.respond)
@@ -171,21 +180,19 @@ def connect_tunet(config_file, default_url):
   check_respond = logcheck_web.respond.content.decode('UTF-8')
   if check_respond != '':
     data_usage = int(check_respond.split(',')[6]) / 10**9
-    kFreeData = 25 
-    RMBperGB = 2
+    kFreeData = 50.0 
+    RMBperGB = 1.0
     network_fee = 0.00 
     if data_usage > kFreeData:
       network_fee = (data_usage - kFreeData) * RMBperGB
-    print('[respond] Data Usage: %.2f/25.00 (GB)' %(data_usage))
-    print('[respond] %.2f RMB was payed to TUNET \(▔＾▔)/' %(network_fee))
+    print('[respond] Data Usage: %.2f/%.2f (GB)' %(data_usage,kFreeData))
+    print('[respond] %.2f RMB was payed to TUNET \\(▔＾▔)/' %(network_fee))
   else:
     print('[respond] Data Usage: Unkonwn.')
     print('[tips] It is ok if you are connected with ipv6 channel.')
     print('[tips] For ipv6 is free, the server will not record its usage.')
     print('[tips] Otherwise, you might need to check the internet connection.')
     
-    
-
 def disconnect_tunet(config_file, default_url):
   print("[do] Read the configration file...")
   logout_url, useless_value, logout_post_data = \
@@ -196,7 +203,7 @@ def disconnect_tunet(config_file, default_url):
   logout_web = TunetWebClient(logout_url, logout_post_data)
   logout_web.post_request()
   logout_web.print_respond()
-  total_wait_time = 5
+  total_wait_time = 7
   for current_time in range(total_wait_time):
     remaining_time = total_wait_time - current_time
     print("[info] Please wait %ds unit the server responds..." \

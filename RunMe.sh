@@ -1,55 +1,43 @@
 #!/bin/bash
 #
 
-declare -r TUNET_PATH="/home/alex/Program/Tunet"
-declare -r TUNET_PYTHON_PATH="/home/alex/Program/Anaconda3.5/bin/python"
-declare -r TUNET_EXEC="${TUNET_PATH}/TunetWebClient.py"
-declare -r TUNET_IPV4_CONF="${TUNET_PATH}/tunet_ipv4.conf.josn"
-declare -r TUNET_IPV6_CONF="${TUNET_PATH}/tunet_ipv6.conf.josn"
+declare -r TUNET_MAIN_FOLDER="/home/alex/Program/Tunet"
+declare -r PYTHON_EXEC="/home/alex/Program/Anaconda3.5/bin/python"
+declare -r TUNET_PY="${TUNET_MAIN_FOLDER}/TunetWebClient.py"
+declare -r TUNET_IPV4_CONF="${TUNET_MAIN_FOLDER}/tunet_ipv4.conf.josn"
+declare -r TUNET_IPV6_CONF="${TUNET_MAIN_FOLDER}/tunet_ipv6.conf.josn"
 
-if [ ! -s ${TUNET_PYTHON_PATH} ]; then
-  echo "[error] Python exec was not found!!!"
-  echo "[error] Please check the TUNET_PYTHON_PATH in RunMe.sh"
+if [ ! -s ${PYTHON_EXEC} ]; then
+  echo "[error] Python exec. not found!!!"
+  echo "[error] Please check the PYTHON_EXEC in RunMe.sh"
   exit 1
 fi
-if [ ! -s ${TUNET_EXEC} ]; then
-  echo "[error] TunetClient.py was not found!!!"
-  echo "[error] Please check the TUNET_EXEC in RunMe.sh"
+if [ ! -s ${TUNET_PY} ]; then
+  echo "[error] TunetClient.py not found!!!"
+  echo "[error] Please check the TUNET_PY in RunMe.sh"
   exit 1
 fi
 
-#f [ "$1" == "O" ]; then
-#  echo '==================== Request ipv4 Link... ===================='
-#  ${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s O -f ${TUNET_IPV4_CONF} -i 4
-#  echo '==================== Request ipv6 Link... ===================='
-#  ${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s O -f ${TUNET_IPV6_CONF} -i 6
-#  echo '=========================== DONE. ============================'
-#elif [ "$1" == "rO" ]; then
-#  echo '==================== Disconnect ipv4 Link ===================='
-#  ${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s X -f ${TUNET_IPV4_CONF} -i 4
-#  echo '==================== Disconnect ipv6 Link ===================='
-#  ${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s X -f ${TUNET_IPV6_CONF} -i 6
-#  echo '==================== Request ipv4 Link... ===================='
-#  ${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s O -f ${TUNET_IPV4_CONF} -i 4
-#  echo '==================== Request ipv6 Link... ===================='
-#  ${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s O -f ${TUNET_IPV6_CONF} -i 6
-#  echo '=========================== DONE. ============================'
-#elif [ "$1" == "X" ]; then
-#  echo '==================== Disconnect ipv4 Link ===================='
-#  ${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s X -f ${TUNET_IPV4_CONF} -i 4
-#  echo '==================== Disconnect ipv6 Link ===================='
-#  ${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s X -f ${TUNET_IPV6_CONF} -i 6
-#  echo '=========================== DONE. ============================'
-#else 
-#  echo "$0 O/rO/X, for Connect, Re-connect or Dis-connect."
-#fi
-
-echo '==================== Disconnect ipv4 Link ===================='
-${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s X -f ${TUNET_IPV4_CONF} -i 4
-echo '==================== Disconnect ipv6 Link ===================='
-${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s X -f ${TUNET_IPV6_CONF} -i 6
-echo '==================== Request ipv4 Link... ===================='
-${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s O -f ${TUNET_IPV4_CONF} -i 4
-echo '==================== Request ipv6 Link... ===================='
-${TUNET_PYTHON_PATH} ${TUNET_EXEC} -s O -f ${TUNET_IPV6_CONF} -i 6
-echo '=========================== DONE. ============================'
+if [ "$1" == "4" ]; then
+  echo '==================== Disconnect ipv4 Link ===================='
+  ${PYTHON_EXEC} ${TUNET_PY} -s X -f ${TUNET_IPV4_CONF} -i 4
+  echo '==================== Request ipv4 Link... ===================='
+  ${PYTHON_EXEC} ${TUNET_PY} -s O -f ${TUNET_IPV4_CONF} -i 4
+  echo '=========================== DONE. ============================'
+elif [ "$1" == "6" ]; then
+  echo '==================== Disconnect ipv6 Link ===================='
+  ${PYTHON_EXEC} ${TUNET_PY} -s X -f ${TUNET_IPV6_CONF} -i 6
+  echo '==================== Request ipv6 Link... ===================='
+  ${PYTHON_EXEC} ${TUNET_PY} -s O -f ${TUNET_IPV6_CONF} -i 6
+  echo '=========================== DONE. ============================'
+else
+  echo '==================== Disconnect ipv4 Link ===================='
+  ${PYTHON_EXEC} ${TUNET_PY} -s X -f ${TUNET_IPV4_CONF} -i 4
+  echo '==================== Request ipv4 Link... ===================='
+  ${PYTHON_EXEC} ${TUNET_PY} -s O -f ${TUNET_IPV4_CONF} -i 4
+  echo '==================== Disconnect ipv6 Link ===================='
+  ${PYTHON_EXEC} ${TUNET_PY} -s X -f ${TUNET_IPV6_CONF} -i 6
+  echo '==================== Request ipv6 Link... ===================='
+  ${PYTHON_EXEC} ${TUNET_PY} -s O -f ${TUNET_IPV6_CONF} -i 6
+  echo '=========================== DONE ============================='
+fi
