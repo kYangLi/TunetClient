@@ -7,6 +7,7 @@ import getpass
 import hashlib
 import getopt
 
+
 class TunetWebClient:
   def __init__(self, url, post_data):
     self.url = url
@@ -38,6 +39,7 @@ class TunetWebClient:
     else:
       print("[error] Unknown State!!!")
 
+
 class TunetConfigData:
   def __init__(self, config_file_path, default_url):
     self.__kDefaultLoginURL = default_url[0]
@@ -61,6 +63,7 @@ class TunetConfigData:
     self.login_post_data = {}
     self.logout_post_data = {}
 
+
   def file_check(self):
     if not os.path.exists(self.path):
       print("Creating configration file: ", self.path)
@@ -70,9 +73,11 @@ class TunetConfigData:
     else:
       print("[info] Using configure file: ", self.path)
 
+
   def value_valid(self, key):
     return (key in self.conf_data.keys()) and \
            (self.conf_data[key] != '')
+
 
   def read(self):
     with open(self.path, "r") as jfrp:  # Json File Read Pointer
@@ -81,6 +86,7 @@ class TunetConfigData:
       if self.value_valid(key):
         self.conf_data_is_valued[key] = True
   
+
   def assignment(self):
     # Login URL
     if not self.conf_data_is_valued['login_url']:
@@ -124,20 +130,24 @@ class TunetConfigData:
       self.conf_data['ac_id'] = self.__kDefaultRedirectIndex
       self.conf_data_is_valued['ac_id'] = True
 
+
   def write(self):
     with open(self.path, "w") as jfwp:  # Json File Write Pointer
       json.dump(obj=self.conf_data, fp=jfwp, sort_keys=True, indent=2)
   
+
   def gen_login_post_data(self):
     self.login_post_data['action'] = 'login'
     self.login_post_data['username'] = self.conf_data['username']
     self.login_post_data['password'] = self.conf_data['password']
     self.login_post_data['ac_id'] = self.conf_data['ac_id']
   
+
   def gen_logout_post_data(self):
     self.logout_post_data['action'] = 'logout'
     self.logout_post_data['username'] = self.conf_data['username']
     self.logout_post_data['ac_id'] = self.conf_data['ac_id']
+
 
 def set_config_data(config_file, default_url, signal_flag):
   config_data = TunetConfigData(config_file, default_url)
@@ -164,7 +174,8 @@ def set_config_data(config_file, default_url, signal_flag):
     post_data = config_data.logout_post_data
   # return 
   return log_url, logcheck_url, post_data
-      
+
+
 def connect_tunet(config_file, default_url):
   print("[do] Read the configration file...")
   login_url, logcheck_url, login_post_data = \
@@ -193,6 +204,7 @@ def connect_tunet(config_file, default_url):
     print('[tips] For ipv6 is free, the server will not record its usage.')
     print('[tips] Otherwise, you might need to check the internet connection.')
     
+
 def disconnect_tunet(config_file, default_url):
   print("[do] Read the configration file...")
   logout_url, useless_value, logout_post_data = \
@@ -239,6 +251,7 @@ def read_in_options(argv):
   # Return the options
   return ip_version, config_file, signal_flag
 
+
 def main(argv):
   ## Constant Setting
   kIpv4ConfigFile = './tunet_ipv4.conf.josn'
@@ -249,7 +262,6 @@ def main(argv):
   kIpv6LoginURL = 'https://auth6.tsinghua.edu.cn/srun_portal_pc.php'
   kIpv6LogoutURL = 'https://auth6.tsinghua.edu.cn/srun_portal_pc.php'
   kIpv6LogcheckURL = 'http://auth6.tsinghua.edu.cn/rad_user_info.php'
-
   ## Read the command line input
   ip_version, config_file, signal_flag = read_in_options(argv)
   ## Connection to Web Client
@@ -265,6 +277,7 @@ def main(argv):
     disconnect_tunet(config_file, default_url)
   else:
     connect_tunet(config_file, default_url)
+
 
 if __name__ == '__main__':
   main(sys.argv[1:])
