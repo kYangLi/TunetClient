@@ -43,7 +43,7 @@ class TunetConfigData:
     self.__kDefaultLoginURL = default_url[0]
     self.__kDefaultLogoutURL = default_url[1]
     self.__kDefaultLogcheckURL = default_url[2]
-    self.__kDefaultRedirectIndex = '1'
+    self.__kDefaultRedirectIndex = '163'
     self.key_list = ['login_url' ,
                      'logout_url',
                      'logcheck_url',
@@ -186,7 +186,7 @@ def connect_tunet(config_file, default_url):
     if data_usage > kFreeData:
       network_fee = (data_usage - kFreeData) * RMBperGB
     print('[respond] Data Usage: %.2f/%.2f (GB)' %(data_usage,kFreeData))
-    print('[respond] %.2f RMB was payed to TUNET \\(▔＾▔)/' %(network_fee))
+    print('[respond] %.2f RMB was payed to TUNET ;-)' %(network_fee))
   else:
     print('[respond] Data Usage: Unkonwn.')
     print('[tips] It is ok if you are connected with ipv6 channel.')
@@ -243,11 +243,11 @@ def main(argv):
   ## Constant Setting
   kIpv4ConfigFile = './tunet_ipv4.conf.josn'
   kIpv6ConfigFile = './tunet_ipv6.conf.josn'
-  kIpv4LoginURL = 'http://auth4.tsinghua.edu.cn/srun_portal_pc.php'
-  kIpv4LogoutURL = 'http://auth4.tsinghua.edu.cn/srun_portal_pc.php'
+  kIpv4LoginURL = 'https://auth4.tsinghua.edu.cn/srun_portal_pc.php'
+  kIpv4LogoutURL = 'https://auth4.tsinghua.edu.cn/srun_portal_pc.php'
   kIpv4LogcheckURL = 'http://auth4.tsinghua.edu.cn/rad_user_info.php'
-  kIpv6LoginURL = 'http://auth6.tsinghua.edu.cn/srun_portal_pc.php'
-  kIpv6LogoutURL = 'http://auth6.tsinghua.edu.cn/srun_portal_pc.php'
+  kIpv6LoginURL = 'https://auth6.tsinghua.edu.cn/srun_portal_pc.php'
+  kIpv6LogoutURL = 'https://auth6.tsinghua.edu.cn/srun_portal_pc.php'
   kIpv6LogcheckURL = 'http://auth6.tsinghua.edu.cn/rad_user_info.php'
 
   ## Read the command line input
